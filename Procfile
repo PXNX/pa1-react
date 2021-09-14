@@ -1,0 +1,1 @@
+web: ./build/install/pa1_react/bin/pa1_react
