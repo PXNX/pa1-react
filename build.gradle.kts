@@ -10,7 +10,7 @@ repositories {
 }
 
 tasks.create("stage") {
-    dependsOn("installDist")
+    dependsOn("browserProductionRun")
 }
 
 

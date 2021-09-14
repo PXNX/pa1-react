@@ -1,1 +1,1 @@
-web: ./build/install/pa1_react/bin/pa1_react
+web: ./build/js/packages/pa1_react/kotlin/pa1_react
