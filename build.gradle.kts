@@ -7,9 +7,12 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-
-
 }
+
+tasks.create("stage") {
+    dependsOn("installDist")
+}
+
 
 dependencies {
     testImplementation(kotlin("test"))
