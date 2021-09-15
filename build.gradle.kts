@@ -18,6 +18,9 @@ dependencies {
     implementation("org.jetbrains.kotlin-wrappers:kotlin-styled:5.3.1-pre.244-kotlin-1.5.30")
     implementation("org.jetbrains.kotlin-wrappers:kotlin-styled-next:0.1-pre.244-kotlin-1.5.30")
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.5.2-native-mt")
+    implementation(npm("react-loader-spinner", "3.1.14"))
+
     implementation(npm("styled-components", "~5.2.1"))
 
 }

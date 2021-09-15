@@ -1,7 +1,7 @@
 import kotlinx.browser.window
 import org.w3c.dom.events.EventListener
 
-fun addServiceWorker() {
+fun sw() {
     val navigator = window.navigator
     console.log("adding service worker ${navigator.serviceWorker}")
 

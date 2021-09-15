@@ -3,9 +3,9 @@ import kotlinx.browser.document
 import kotlinx.browser.window
 import react.dom.div
 
-fun main() {
+fun ui() {
 
-   addServiceWorker()
+//   addServiceWorker()
 
 
     window.onload = {
@@ -17,7 +17,7 @@ fun main() {
                     }
                 }
 
-             
+
 
 
 

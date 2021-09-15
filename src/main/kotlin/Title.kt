@@ -16,6 +16,7 @@ external interface TitleProps : Props {
 
 data class TitleState(val name: String) : State
 
+@OptIn(ExperimentalJsExport::class)
 @JsExport
 class Title(props: TitleProps) : RComponent<TitleProps, TitleState>(props) {
 
@@ -28,7 +29,7 @@ styledBody {
 
     css {
 
-        background= "#fdfdfd";
+        backgroundColor= Color("#0f355a")
         fontFamily= "Nunito"
         fontSize=LinearDimension("1rem")
     }
@@ -82,7 +83,6 @@ styledBody {
     styledDiv {
 
         css {
-            put("", "")
             //    position=Position.relative
             backgroundColor = Color.blue
             //  position = Position.absolute
