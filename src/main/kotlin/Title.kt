@@ -9,6 +9,7 @@ import react.dom.nav
 import component.iconButton
 import kotlinx.css.properties.LineHeight
 import styled.*
+import util.isLandscape
 
 external interface TitleProps : Props {
     var name: String
@@ -40,6 +41,9 @@ class Title(props: TitleProps) : RComponent<TitleProps, TitleState>(props) {
 
                 width = LinearDimension("100%")
 
+                paddingLeft = 10.px
+                paddingRight = 10.px
+
             }
 
 
@@ -57,33 +61,36 @@ class Title(props: TitleProps) : RComponent<TitleProps, TitleState>(props) {
                 css {
                     float = Float.left
                     padding = "0.5rem"
-                    margin(left=50.px)
                 }
+
+
             }
 
 
+if(isLandscape) {
+    styledDiv {
+        css {
 
 
+            backgroundColor = Color("#4455aa")
 
-
-            styledDiv {
-                css {
-
-
-                    backgroundColor = Color("#4455aa")
-
-                    float = Float.right
-                    //  display = Display.inlineFlex
-                    margin(right=50.px)
-                    //  alignItems=Align.center
-                }
-
-                iconButton("https://t.me/militaernews", "telegram")
-
-                iconButton("https://twitter.com/MilitaerNews?s=09", "twitter")
-
-                iconButton("mailto:militaernews@protonmail.com", "icon-mail")
-            }
+            float = Float.right
+            //  display = Display.inlineFlex
+            margin(right = 50.px)
+            //  alignItems=Align.center
         }
+
+        iconButton("https://t.me/militaernews", "telegram")
+
+        iconButton("https://twitter.com/MilitaerNews?s=09", "twitter")
+
+        //   iconButton("mailto:militaernews@protonmail.com", "icon-mail")
+    }
+}
+        }
+
+
+        
+
     }
 }

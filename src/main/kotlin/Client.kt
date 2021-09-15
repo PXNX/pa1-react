@@ -9,7 +9,7 @@ fun main() {
 
     sw()
 
-print(window.navigator.platform)
+
     window.onload = {
         render(document.getElementById("root")) {
 
