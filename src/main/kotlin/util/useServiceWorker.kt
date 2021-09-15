@@ -11,7 +11,7 @@ import react.useState
  *
  * @param[serviceWorkerScriptUrl] Path to the service worker script file from the public folder
  */
-fun useServiceWorker(serviceWorkerScriptUrl: String = "/serviceWorker.js"): ServiceWorkerState {
+fun useServiceWorker(serviceWorkerScriptUrl: String = "/sw.js"): ServiceWorkerState {
 
     val (serviceWorkerState, setServiceWorkerState) = useState<ServiceWorkerState>(ServiceWorkerState.Loading)
 

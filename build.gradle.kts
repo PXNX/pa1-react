@@ -23,6 +23,8 @@ dependencies {
 
     implementation(npm("styled-components", "~5.2.1"))
 
+    implementation("com.ccfraser.muirwik:muirwik-components:0.9.0")
+
 }
 
 kotlin {

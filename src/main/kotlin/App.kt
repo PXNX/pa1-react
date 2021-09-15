@@ -65,7 +65,10 @@ val App = functionComponent<Props> {
         is ServiceWorkerState.Failed -> h1 {
             +"Error in registering service worker: ${serviceWorkerState.exception.message}"
         }
-        ServiceWorkerState.Loading -> loadingComponent()
+        ServiceWorkerState.Loading -> {
+            println("---------------- LOADING")
+            loadingComponent()
+        }
     }
 }
 

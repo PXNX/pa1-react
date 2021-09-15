@@ -1,4 +1,5 @@
 import kotlinx.browser.window
+import kotlinx.coroutines.await
 import org.w3c.dom.events.EventListener
 
 fun sw() {
@@ -8,7 +9,7 @@ fun sw() {
     window.addEventListener("load", EventListener {
         console.log("load event listener")
 
-        navigator.serviceWorker.register("/sw.js").then(
+        navigator.serviceWorker.register("./sw.js").then(
             onFulfilled = {
                 console.log("ServiceWorker registration successful with scope: ", it.scope)
             }

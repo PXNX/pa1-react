@@ -3,11 +3,13 @@ import kotlinx.browser.document
 import kotlinx.browser.window
 import react.dom.div
 
-fun ui() {
+fun main() {
 
 //   addServiceWorker()
 
+    sw()
 
+print(window.navigator.platform)
     window.onload = {
         render(document.getElementById("root")) {
 
@@ -16,6 +18,8 @@ fun ui() {
                         name = "React!"
                     }
                 }
+
+                         child(Feed::class){}
 
 
 
