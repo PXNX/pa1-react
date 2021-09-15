@@ -3,14 +3,13 @@ plugins {
 }
 
 group = "nyx"
-version = "1.0-SNAPSHOT"
+version = "1.0"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlin-wrappers:kotlin-react:17.0.2-pre.244-kotlin-1.5.30")
     implementation("org.jetbrains.kotlin-wrappers:kotlin-react-dom:17.0.2-pre.244-kotlin-1.5.30")
     implementation("org.jetbrains.kotlin-wrappers:kotlin-react-router-dom:5.2.0-pre.206-kotlin-1.5.10")
@@ -22,9 +21,6 @@ dependencies {
     implementation(npm("react-loader-spinner", "3.1.14"))
 
     implementation(npm("styled-components", "~5.2.1"))
-
-    implementation("com.ccfraser.muirwik:muirwik-components:0.9.0")
-
 }
 
 kotlin {

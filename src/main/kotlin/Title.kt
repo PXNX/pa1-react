@@ -6,6 +6,8 @@ import react.State
 import react.dom.a
 import react.dom.attrs
 import react.dom.nav
+import component.iconButton
+import kotlinx.css.properties.LineHeight
 import styled.*
 
 external interface TitleProps : Props {
@@ -24,7 +26,7 @@ class Title(props: TitleProps) : RComponent<TitleProps, TitleState>(props) {
 
     override fun RBuilder.render() {
 
-        styledNav {
+        styledHeader {
             css {
                 //   margin = "1rem"
                 backgroundColor = Color("#0c2b49")
@@ -46,17 +48,18 @@ class Title(props: TitleProps) : RComponent<TitleProps, TitleState>(props) {
 
 
 
-                styledImg(src = "./logo/logo-192.png", alt = "Militaernews") {
-                    attrs {
-                        width = "45"
-                        height = "45"
-                    }
-
-                    css {
-                        float = Float.left
-                        padding = "0.5rem"
-                    }
+            styledImg(src = "./logo/logo-192.png", alt = "Militaernews") {
+                attrs {
+                    width = "45"
+                    height = "45"
                 }
+
+                css {
+                    float = Float.left
+                    padding = "0.5rem"
+                    margin(left=50.px)
+                }
+            }
 
 
 
@@ -71,59 +74,15 @@ class Title(props: TitleProps) : RComponent<TitleProps, TitleState>(props) {
 
                     float = Float.right
                     //  display = Display.inlineFlex
-
+                    margin(right=50.px)
                     //  alignItems=Align.center
                 }
 
-                styledA("/") {
-                    styledImg(src = "icon/telegram.svg", alt = "Telegram") {
-                        attrs {
+                iconButton("https://t.me/militaernews", "telegram")
 
-                            width = "32"
-                            height = "32"
-                        }
+                iconButton("https://twitter.com/MilitaerNews?s=09", "twitter")
 
-
-                    }
-
-
-                }
-
-
-
-                styledA("/") {
-                    styledImg(src = "icon/twitter.svg", alt = "Twitter") {
-                        attrs {
-                            width = "32"
-                            height = "32"
-                        }
-
-                        css {
-                            padding = "0.3rem"
-                        }
-                    }
-
-                    css{
-                        height= LinearDimension.fillAvailable
-                    }
-                }
-
-                a("/") {
-                    styledImg(src = "icon/icon-mail.svg", alt = "Mail") {
-                        attrs {
-                            width = "32"
-                            height = "32"
-
-                        }
-
-                        css {
-                            padding = "0.5rem"
-                        }
-                    }
-
-                }
-
-
+                iconButton("mailto:militaernews@protonmail.com", "icon-mail")
             }
         }
     }

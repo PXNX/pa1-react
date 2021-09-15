@@ -13,19 +13,17 @@ print(window.navigator.platform)
     window.onload = {
         render(document.getElementById("root")) {
 
+
                 child(Title::class) {
                     attrs {
                         name = "React!"
                     }
                 }
 
-                         child(Feed::class){}
+                child(Feed::class) {}
 
 
-
-
-
-         /*  child(ImageList::class) {
+                /*  child(ImageList::class) {
                 this.attrs {
                     listOf("res/wallpaper2.jpg")
                 }
@@ -33,7 +31,6 @@ print(window.navigator.platform)
 
           */
 
-
+            }
         }
     }
-}
