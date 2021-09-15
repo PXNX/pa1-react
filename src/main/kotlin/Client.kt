@@ -5,7 +5,7 @@ import react.dom.div
 
 fun main() {
 
-    addServiceWorker()
+   addServiceWorker()
 
 
     window.onload = {

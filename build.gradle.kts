@@ -9,11 +9,6 @@ repositories {
     mavenCentral()
 }
 
-tasks.create("stage") {
-    dependsOn("browserProductionRun")
-}
-
-
 dependencies {
     testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlin-wrappers:kotlin-react:17.0.2-pre.244-kotlin-1.5.30")

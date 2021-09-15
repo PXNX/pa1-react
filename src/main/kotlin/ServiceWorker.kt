@@ -8,7 +8,7 @@ fun addServiceWorker() {
     window.addEventListener("load", EventListener {
         console.log("load event listener")
 
-        navigator.serviceWorker.register("/count.js").then(
+        navigator.serviceWorker.register("/sw.js").then(
             onFulfilled = {
                 console.log("ServiceWorker registration successful with scope: ", it.scope)
             }
