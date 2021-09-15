@@ -11,11 +11,15 @@ fun main() {
     window.onload = {
         render(document.getElementById("root")) {
 
-            child(Title::class) {
-                attrs {
-                    name = "React!"
+                child(Title::class) {
+                    attrs {
+                        name = "React!"
+                    }
                 }
-            }
+
+             
+
+
 
          /*  child(ImageList::class) {
                 this.attrs {
