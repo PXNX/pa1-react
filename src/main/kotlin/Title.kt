@@ -19,11 +19,9 @@ data class TitleState(val name: String) : State
 
 @OptIn(ExperimentalJsExport::class)
 @JsExport
-class Title(props: TitleProps) : RComponent<TitleProps, TitleState>(props) {
+class Title(var titleProps: TitleProps) : RComponent<TitleProps, TitleState>( titleProps) {
 
-    init {
-        state = TitleState(props.name)
-    }
+
 
     override fun RBuilder.render() {
 

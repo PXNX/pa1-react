@@ -1,19 +1,30 @@
 import component.iconButton
-import kotlinx.browser.window
+import component.loadingComponent
+import kotlinx.coroutines.launch
 import kotlinx.css.*
+import kotlinx.html.js.onClickFunction
 import react.Props
 import react.RBuilder
 import react.RComponent
 import react.State
 import react.dom.attrs
+import react.dom.button
+import react.dom.h2
 import styled.*
+import util.PushManagerState
 import util.isLandscape
 import util.isPortrait
 
 
+external interface FeedProps : Props {
+    var pushManagerState: PushManagerState
+}
+
 @OptIn(ExperimentalJsExport::class)
 @JsExport
-class Feed : RComponent<Props, State>() {
+class Feed(var feedProps: FeedProps) : RComponent<FeedProps, State>(feedProps) {
+
+
     override fun RBuilder.render() {
 
         val paths = emptyList<String>().toMutableList()
@@ -43,11 +54,50 @@ class Feed : RComponent<Props, State>() {
                                 width = LinearDimension.fillAvailable
                                 borderRadius = LinearDimension("16px")
                                 padding = "1.5rem"
-                                marginBottom=LinearDimension("1rem")
+                                marginBottom = LinearDimension("1rem")
                             }
 
 
                             +" Nachrichten rund um Militär- und Protest-Aktionen weltweit und brandaktuell 🔰"
+
+
+
+                            when (feedProps.pushManagerState) {
+                                is PushManagerState.NotSubscribed -> {
+                                    button {
+                                        attrs {
+                                            onClickFunction = {
+                                                scope.launch {
+                                                    pushManager.subscribeUser(feedProps.pushManagerState as PushManagerState.NotSubscribed) {
+                                                        console.log("Sending subscription to server...")
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        +"Click here to subscribe to push notifications"
+                                    }
+                                }
+                                is PushManagerState.Subscribed -> {
+                                    h2 {
+                                        +"User is subscribed to Push API"
+                                    }
+                                    button {
+                                        attrs {
+                                            onClickFunction = {
+                                                scope.launch {
+                                                    pushManager.unsubscribeUser(feedProps.pushManagerState as PushManagerState.Subscribed)
+                                                }
+                                            }
+                                        }
+                                        +"Click here to unsubscribe"
+                                    }
+                                }
+                                PushManagerState.NotSupported -> h2 {
+                                    +"Push API is not supported on this browser"
+                                }
+                                PushManagerState.Loading, PushManagerState.NotLoaded -> loadingComponent()
+                            }
+
 
 
                             styledButton {
@@ -66,7 +116,7 @@ class Feed : RComponent<Props, State>() {
                             backgroundColor = Color("#12273d")
                             width = LinearDimension.fillAvailable
                             borderRadius = LinearDimension("16px")
-                            marginBottom=LinearDimension("1rem")
+                            marginBottom = LinearDimension("1rem")
                         }
 
                         styledImg(src = path) {
@@ -78,13 +128,13 @@ class Feed : RComponent<Props, State>() {
                             css {
                                 borderTopRightRadius = LinearDimension("16px")
                                 borderTopLeftRadius = LinearDimension("16px")
-                              //  overflow = Overflow.hidden
+                                //  overflow = Overflow.hidden
                             }
                         }
 
                         styledDiv {
                             css {
-                               padding = "0.75rem"
+                                padding = "0.75rem"
                             }
 
                             styledP {
@@ -92,6 +142,7 @@ class Feed : RComponent<Props, State>() {
 
                                 css {
                                     fontWeight = FontWeight.bold
+                                    fontFamily = "sans-serif"
                                     color = Color("#fff")
                                 }
                             }
@@ -112,12 +163,15 @@ class Feed : RComponent<Props, State>() {
                         backgroundColor = Color("#016b6b")
                         width = LinearDimension.fillAvailable
                         borderRadius = LinearDimension("16px")
-                       marginBottom = LinearDimension("12rem")
+                        marginBottom = LinearDimension("12rem")
                         padding = "1.5rem"
                     }
 
 
                     +" Nachrichten rund um Militär- und Protest-Aktionen weltweit und brandaktuell 🔰"
+
+
+
 
 
                     styledButton {

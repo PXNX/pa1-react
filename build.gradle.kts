@@ -39,3 +39,7 @@ afterEvaluate {
         versions.webpackDevServer.version = "4.0.0"
     }
 }
+
+tasks.register("stage") {
+    dependsOn("build")
+}

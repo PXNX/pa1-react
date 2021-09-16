@@ -1,1 +1,1 @@
-web: ./build/js/packages/pa1_react/kotlin/pa1_react/kotlin/index.html
+web: ./build/distributions
