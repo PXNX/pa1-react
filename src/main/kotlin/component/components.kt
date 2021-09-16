@@ -25,14 +25,12 @@ fun RBuilder.loadingComponent() = LoadingSpinner {
 fun StyledDOMBuilder<DIV>.iconButton(url:String, iconName:String) = styledA(url) {
     styledImg(src = "icon/$iconName.svg", alt = iconName) {
         attrs {
-            width = "32"
-            height = "32"
-
-
+            width = "35"
+            height = "35"
         }
     }
 
     css {
-        padding="100"
+        padding="50px"
     }
 }

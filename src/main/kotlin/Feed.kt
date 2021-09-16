@@ -1,13 +1,14 @@
+import component.iconButton
+import kotlinx.browser.window
 import kotlinx.css.*
 import react.Props
 import react.RBuilder
 import react.RComponent
 import react.State
 import react.dom.attrs
-import react.dom.img
-import styled.css
-import styled.styledCol
-import styled.styledDiv
+import styled.*
+import util.isLandscape
+import util.isPortrait
 
 
 @OptIn(ExperimentalJsExport::class)
@@ -15,82 +16,145 @@ import styled.styledDiv
 class Feed : RComponent<Props, State>() {
     override fun RBuilder.render() {
 
+        val paths = emptyList<String>().toMutableList()
 
-      styledDiv {
+        for (i in 0..30) {
+            paths.addAll(listOf("wallpaper1.webp", "wallpaper2.jpg", "wallpaper3.png"))
+        }
 
+        styledDiv {
+            css {
+                display = Display.flex
+                justifyContent = JustifyContent.center
+                marginTop = 80.px
+            }
 
-          css {
-              backgroundColor = Color.blue
-              display = Display.grid// Display.flex
-              gridTemplateColumns = GridTemplateColumns(GridAutoRows("1fr"))
-              justifyContent = JustifyContent.center
-              //              alignItems=Align.center
+            styledDiv {
+                css {
+                    width = if (isLandscape) LinearDimension("50%") else LinearDimension.fillAvailable
+                }
 
-              height = 1000.px
+                paths.forEachIndexed { index, path ->
 
-              margin(top = 100.px)
-//               height=LinearDimension("50vh")
-
-          }
-
-
-          val paths = emptyList<String>().toMutableList()
-
-          for (i in 0..8) {
-              paths.addAll(listOf("wallpaper1.webp", "wallpaper2.jpg", "wallpaper3.png"))
-          }
-
-
-          for (path in paths) {
-
-              styledDiv {
-                  css {
-                      backgroundColor = Color.darkGreen
-
-                      //   display=Display.grid
-                      //    alignItems=Align.center
-                      //  justifyContent=JustifyContent.center
-
-                      width = LinearDimension.fillAvailable
-
-                      filter = "<filter id=\"round\">\n" +
-                              "  <feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"5\" result=\"blur\" />\n" +
-                              "  <feColorMatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9\" result=\"goo\" />\n" +
-                              "  <feComposite in=\"SourceGraphic\" in2=\"goo\" operator=\"atop\"/>\n" +
-                              "</filter>\n"
-                  }
+                    if (index % 12 == 0) {
+                        styledDiv {
+                            css {
+                                backgroundColor = Color("#016b6b")
+                                width = LinearDimension.fillAvailable
+                                borderRadius = LinearDimension("16px")
+                                padding = "1.5rem"
+                                marginBottom=LinearDimension("1rem")
+                            }
 
 
+                            +" Nachrichten rund um Militär- und Protest-Aktionen weltweit und brandaktuell 🔰"
 
 
-                  img(src = path) {
+                            styledButton {
+                                +"Auf dem Laufenden bleiben (push notification)"
+
+                                attrs {
+
+                                }
+                            }
+                        }
+                    }
 
 
-                      attrs {
-                          width = "100%"
-                          height = "120px"
+                    styledDiv {
+                        css {
+                            backgroundColor = Color("#12273d")
+                            width = LinearDimension.fillAvailable
+                            borderRadius = LinearDimension("16px")
+                            marginBottom=LinearDimension("1rem")
+                        }
+
+                        styledImg(src = path) {
+                            attrs {
+                                width = "100%"
+                                height = "120px"
+                            }
+
+                            css {
+                                borderTopRightRadius = LinearDimension("16px")
+                                borderTopLeftRadius = LinearDimension("16px")
+                              //  overflow = Overflow.hidden
+                            }
+                        }
+
+                        styledDiv {
+                            css {
+                               padding = "0.75rem"
+                            }
+
+                            styledP {
+                                +"Titel des Artikels"
+
+                                css {
+                                    fontWeight = FontWeight.bold
+                                    color = Color("#fff")
+                                }
+                            }
+
+                            styledP {
+                                +"Hier passierte etwas. Lesen Sie hier weiter und hier kommt noch Text..."
+
+                                css {
+                                    color = Color("#fff")
+                                }
+                            }
+                        }
+                    }
+                }
+
+                styledDiv {
+                    css {
+                        backgroundColor = Color("#016b6b")
+                        width = LinearDimension.fillAvailable
+                        borderRadius = LinearDimension("16px")
+                       marginBottom = LinearDimension("12rem")
+                        padding = "1.5rem"
+                    }
 
 
-                      }
+                    +" Nachrichten rund um Militär- und Protest-Aktionen weltweit und brandaktuell 🔰"
 
 
-                  }
+                    styledButton {
+                        +"Auf dem Laufenden bleiben (push notification)"
+
+                        attrs {
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        if (isPortrait) {
+            styledDiv {
+                css {
 
 
-                  styledDiv {
-                      +"<b>Titel des Artikels</b>\n"
-                      +"Hier passierte etwas. Lesen Sie hier weiter und hier kommt noch Text..."
+                    backgroundColor = Color("#0c2b49")
 
-                      css {
+                    float = Float.right
+                    display = Display.block
+                    bottom = 0.px
+                    left = 0.px
+                    right = 0.px
+                    position = Position.fixed
+                    //margin(right=50.px)
+                    //  alignItems=Align.center
+                }
 
-                          margin(left=LinearDimension("0.75rem"),right = LinearDimension("0.75rem"), top=LinearDimension("1rem"), bottom = LinearDimension("2.5rem"))
-                      }
-                  }
+                iconButton("https://t.me/militaernews", "telegram")
 
-              }
-          }
-      }
+                iconButton("https://twitter.com/MilitaerNews?s=09", "twitter")
+
+                //   iconButton("mailto:militaernews@protonmail.com", "icon-mail")
+            }
+        }
     }
-
-
 }
